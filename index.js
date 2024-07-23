@@ -1,7 +1,10 @@
 const container = document.querySelector(".container");
 const sketchContainer = document.querySelector(".sketch-container");
 const dimensionButton = document.querySelector("#dimensions-button");
+const colorButton = document.querySelector("#color-button");
 let activeScreen = undefined;
+
+let selectedColor = "#000000";
 
 dimensionButton.addEventListener("click", e => {
     if (activeScreen != undefined) {
@@ -9,6 +12,10 @@ dimensionButton.addEventListener("click", e => {
     }
     let size = prompt("Please enter the grid size");
     createGrid(size);
+})
+
+colorButton.addEventListener("click", e => {
+    selectedColor = prompt("Enter color or hex code");
 })
 
 function createGrid(size) {
@@ -25,7 +32,7 @@ function createGrid(size) {
             column.appendChild(box);
 
             box.addEventListener("mouseover", e => {
-                box.setAttribute("style", "background-color: black");
+                box.setAttribute("style", "background-color: " + selectedColor);
             });
         }
         screen.appendChild(column);
